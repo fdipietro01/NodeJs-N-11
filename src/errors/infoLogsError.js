@@ -1,5 +1,4 @@
 const createProductErrorInfo = (product) => {
-  console.log(product);
   return `One or more product properties were incomplete or not valid.
     List of requieed properties:
     *title: needs to be a string, recived ${product.title}

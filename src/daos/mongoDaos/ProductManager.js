@@ -9,7 +9,7 @@ class ProductManager {
     try {
       await this.model.create(producto);
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       throw new Error("Error al grabar el producto", err);
     }
   };

@@ -45,7 +45,7 @@ mailRouter.get("/twilio", async (req, res) => {
     });
     res.status(200).send({ message: "Mensaje enviado" });
   } catch (err) {
-    console.log(err.message);
+    req.logger.error(err.message);
   }
 });
 

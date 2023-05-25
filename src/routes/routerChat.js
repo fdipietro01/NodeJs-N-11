@@ -2,6 +2,7 @@ const { Router } = require("express");
 const passportAutenticate = require("../middlewares/passportAutenticate");
 const passportAuthorize = require("../middlewares/passportAuthorize");
 const { Chat } = require("../service/index");
+const logger = require("../logger/customLogger");
 
 const routerChat = Router();
 routerChat.get(
@@ -12,7 +13,7 @@ routerChat.get(
     const io = req.app.get("socketio");
     io.on("connection", (socket) => {
       socket.removeAllListeners();
-      console.log("Conexión socket establecida");
+      logger.info("Conexión socket establecida");
       socket.emit("confirmConnection");
 
       socket.on("usrLogueado", async (name) => {

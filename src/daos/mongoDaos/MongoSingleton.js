@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const logger = require("../../logger/customLogger");
 
 class MongoSingleton {
   static #instance;
@@ -9,16 +10,16 @@ class MongoSingleton {
         useUnifiedTopology: true,
       });
     } catch (err) {
-      console.log(err, "Error al conectar a la db");
+      logger.error(err, "Error al conectar a la db");
     }
   }
   static connect(mongoUrl) {
     if (this.#instance) {
-      console.log("Mongo already connected");
+      logger.info("Mongo already connected");
       return this.#instance;
     } else {
       this.#instance = new MongoSingleton(mongoUrl);
-      console.log("Mongo connect succesfull");
+      logger.info("Mongo connect succesfull");
     }
   }
 }

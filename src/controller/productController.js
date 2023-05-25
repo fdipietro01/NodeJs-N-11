@@ -16,7 +16,7 @@ class ProductController {
       );
       res.send(productsData);
     } catch (err) {
-      console.log(err.message);
+      req.logger.error(err.message);
       res.status(400).send(err);
     }
   }
@@ -27,7 +27,7 @@ class ProductController {
       const productData = await Product.getProductById(pid);
       res.send(productData);
     } catch (err) {
-      console.log(err.message);
+      req.logger.error(err.message);
       res.status(400).send(err);
     }
   }
@@ -64,7 +64,7 @@ class ProductController {
       await Product.addProduct(req.body);
       res.status(200).send({ status: "succes" });
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       res.status(400).json({
         message: err.message,
       });
@@ -92,7 +92,7 @@ class ProductController {
           message: "Error al eliminar producto",
         });
     } catch (err) {
-      console.log(err.message);
+      req.logger.error(err.message);
       res.status(400).json({
         message: "Error al eliminar producto",
       });

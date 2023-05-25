@@ -5,8 +5,11 @@ const passport = require("passport");
 const initializePassport = require("./middlewares/passportMiddleware");
 const cors = require("cors");
 const { Server } = require("socket.io");
+const { addLogger } = require("./middlewares/logger");
+const logger = require("./logger/customLogger");
 
 const app = express();
+app.use(addLogger);
 
 //enable cors
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
@@ -28,7 +31,11 @@ initializePassport();
 app.use("/", router);
 
 const httpServer = app.listen(process.env.PORT, () => {
-  console.log("Servidor corriendo en puerto", process.env.PORT);
+  logger.info(
+    `Servidor corriendo en puerto ${
+      process.env.PORT
+    } - ${new Date().toLocaleTimeString()}`
+  );
 });
 
 const io = new Server(httpServer, {

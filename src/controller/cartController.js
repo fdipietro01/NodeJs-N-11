@@ -31,7 +31,7 @@ class CartController {
       await Cart.updateProductQuantityFromCart(cid, pid, quantity);
       res.status(200).send({ status: "success" });
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       res.status(400).send({ error: err.message });
     }
   }

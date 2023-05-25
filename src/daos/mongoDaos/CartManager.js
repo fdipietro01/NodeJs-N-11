@@ -33,7 +33,7 @@ class CartMaganer {
       }
       return products;
     } catch (err) {
-      console.log(err.message);
+      req.logger.error(err.message);
       throw new Error("Error al leer productos", err);
     }
   };
@@ -59,7 +59,7 @@ class CartMaganer {
         cart
       );
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       throw new Error("Error al actualizar cantidad en productos", err.message);
     }
   };
@@ -71,7 +71,7 @@ class CartMaganer {
         { productos: productos.length ? productos : [] }
       );
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       throw new Error("Error al actualizar colección productos", err.message);
     }
   };
@@ -87,7 +87,7 @@ class CartMaganer {
         cart
       );
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       throw new Error("Error al eleminar producto en carrito", err.message);
     }
   };
@@ -99,7 +99,7 @@ class CartMaganer {
         { productos: [] }
       );
     } catch (err) {
-      console.log(err);
+      req.logger.error(err);
       throw new Error("Error al eliminar productos en carrito", err.message);
     }
   };

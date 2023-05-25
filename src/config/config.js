@@ -9,7 +9,6 @@ require("dotenv").config({
 const mongoUrl = process.env.MONGO_URL;
 
 const config = {
-  enviroment: mode,
   persistence: process.env.PERSISTENCE,
   dbConection: () => MongoSingleton.connect(mongoUrl),
   session: {

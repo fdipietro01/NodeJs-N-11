@@ -1,5 +1,6 @@
 const passport = require("passport");
 const { Strategy, ExtractJwt } = require("passport-jwt");
+const logger = require("../logger/customLogger");
 
 const JWTStrategy = Strategy;
 const ExtractJWT = ExtractJwt;
@@ -11,7 +12,7 @@ const cookieExtractor = (req) => {
   if (req && req.cookies) {
     token = req.cookies[cookieField];
   }
-  console.log({ token });
+  logger.info(token);
   return token;
 };
 
