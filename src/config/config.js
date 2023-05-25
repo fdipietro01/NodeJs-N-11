@@ -1,13 +1,17 @@
 const MongoStore = require("connect-mongo");
 const MongoSingleton = require("../daos/mongoDaos/MongoSingleton");
+const program = require("../../process");
 
-require("dotenv").config();
-
+const { mode } = program.opts();
+require("dotenv").config({
+  path: mode === "DEVELOPMENT" ? "./.env.development" : "./.env.production",
+});
 const mongoUrl = process.env.MONGO_URL;
 
 const config = {
+  enviroment: mode,
   persistence: process.env.PERSISTENCE,
-  dbConection: () => MongoSingleton.connect(),
+  dbConection: () => MongoSingleton.connect(mongoUrl),
   session: {
     store: MongoStore.create({
       mongoUrl: mongoUrl,
