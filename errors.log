@@ -1,0 +1,4 @@
+error: MongoServerError: bad auth : Authentication failed. Error al conectar a la db
+error: ErrorLog originado en ruta de prueba
+fatal: FatalLog originado en ruta de prueba
+fatal: FatalLog originado en ruta de prueba

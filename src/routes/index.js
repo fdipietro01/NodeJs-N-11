@@ -6,6 +6,7 @@ const sessionsRouter = require("./routerSession");
 const mailRouter = require("./routerMail");
 const routerChat = require("./routerChat");
 const routerMocking = require("./routerMocking");
+const routerError = require("./routerError");
 const errorHandler = require("../middlewares/routeErrorMiddleware");
 
 const router = Router();
@@ -17,5 +18,6 @@ router.use("/sessions", sessionsRouter);
 router.use("/api/mail", mailRouter);
 router.use("/api/chat", routerChat);
 router.use("/api/mocking", routerMocking);
+router.use("/loggerTest", routerError);
 
 module.exports = router;
